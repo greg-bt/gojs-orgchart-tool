@@ -10,7 +10,7 @@
     "typescript": "^5.3.3"
   },
   "scripts": {
-    "build-dev": "esbuild src/index.ts --bundle --outfile=dist/script.js",
+    "build-dev": "esbuild src/index.ts --bundle --outfile=dist/script.js --watch",
     "build": "esbuild index.ts --minify --bundle --outfile=dist/min-script.js"
   },
   "dependencies": {
