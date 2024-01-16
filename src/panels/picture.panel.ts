@@ -17,6 +17,8 @@ export default function PicturePanel() {
 function retrievePhoto(email: string) {
     if (!email) return blankPhoto;
 
+    // Replace with your company server
+    return `https://example.com?email=${email}`;
 }
 
 // Base64 blank profile photo
