@@ -34,39 +34,14 @@ const diagram = new Diagram("diagramContainer",
     }
 );
 
+window.onbeforeunload = () => {return true;}
 
 
 
-// Add new employee to diagram
-export function addEmployee(node : Part | null) {
-    if (!node) return;
-    diagram.startTransaction("add employee");
-
-    let email = prompt("Enter Email Address", "");
-
-    // Create new node
-    let newNodeData = {
-        email: email,
-        name: "NAME",
-        title: "TITLE",
-        tag: "TAG",
-        location: "LOCATION",
-        parent: node.data.key
-    };
-
-    // Add node to diagram
-    diagram.model.addNodeData(newNodeData);
-    const newNode = diagram.findNodeForData(newNodeData);
-
-    // Check for completeness and close transaction
-    if (newNode) newNode.location = node.location;
-    diagram.commitTransaction("add employee");
-    //diagram.commandHandler.scrollToPart(newNode);
-}
 
 diagram.model = new TreeModel(
     [ // the nodeDataArray
-        { key: "A", name:"greg-bt", title: "Engineer", tag: "B01", location: "England" },
+        { key: "A", name:"greg-bt", title: "Engineer", tag: "B02", location: "UK" },
         { key: "B", parent: "A" },
         { key: "D", parent: "A" },
         { key: "C", parent: "B" }
