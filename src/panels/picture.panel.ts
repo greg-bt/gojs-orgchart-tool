@@ -1,6 +1,6 @@
 import { Binding, GraphObject, Picture, Size } from 'gojs';
 
-// 70x70 Picture
+/** Returns panel showing 70x70 picture of employee. */
 export default function PicturePanel() {
     return GraphObject.make(
         Picture,

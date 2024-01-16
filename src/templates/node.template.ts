@@ -2,7 +2,9 @@ import { Binding, GraphObject, Node, Panel, Part, Shape, Spot } from "gojs";
 import CardPanel from "../panels/card.panel";
 import ButtonPanel from "../panels/button.panel";
 
-
+/**
+ * Defines the layout and function of orgchart node elements
+*/
 export default function NodeTemplate() {
     return GraphObject.make(
         
@@ -40,10 +42,12 @@ export default function NodeTemplate() {
     )
 }
 
+// Change panel opacity
 function setNodeOpacity(node: GraphObject, opacity: number) {
     if (node instanceof Panel) {
         let panel = node.findObject("BUTTONPANEL");
 
+        // Update opacity if panel exists
         if (panel) panel.opacity = opacity;
     }
 }

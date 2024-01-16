@@ -2,6 +2,7 @@ import { GraphObject, Panel, Shape } from 'gojs';
 import PicturePanel from './picture.panel';
 import DetailsPanel from './details.panel';
 
+/** Returns the layout of the employee card panel. */
 export default function CardPanel() {
     return GraphObject.make(
         
@@ -20,12 +21,11 @@ export default function CardPanel() {
         ),
 
         // Card contents
-
         GraphObject.make(
             Panel,
             "Horizontal",
-            PicturePanel(),
-            DetailsPanel()
+            PicturePanel(), // Employee Picture
+            DetailsPanel()  // Employee Details
         )
     )
 }
