@@ -1,0 +1,19 @@
+{
+  "name": "gojs-orgchart-tool",
+  "description": "A simple HTML webtool for creating organisation charts",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "author": "greg-bt",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "0.19.11",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "build-dev": "esbuild src/index.ts --bundle --outfile=dist/script.js",
+    "build": "esbuild index.ts --minify --bundle --outfile=dist/min-script.js"
+  },
+  "dependencies": {
+    "gojs": "^2.3.13"
+  }
+}
