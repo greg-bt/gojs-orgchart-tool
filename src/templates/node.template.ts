@@ -29,6 +29,29 @@ export default function NodeTemplate() {
                 let shape = (node as Panel).findObject("SHAPE");
                 if (shape) (shape as Shape).fill = "white";
             },
+
+            // Drop Event
+            mouseDrop: (e, node) => {
+                if (!node.diagram) return;
+                let selected = node.diagram.selection.first();
+
+                // Check if selected node can be parented to target
+                if (canParent(selected, (node as Node) )) {
+                    const link = (selected as Node).findTreeParentLink();
+
+                    // Create new link between nodes
+                    if (link == null) {
+                        node.diagram.toolManager.linkingTool.insertLink(
+                            (node as Node),
+                            (node as Node).port,
+                            (selected as Node),
+                            (selected as Node).port
+                        );
+                       
+                    // Remove existing link if exists
+                    } else link.fromNode = (node as Node)
+                }
+            }
         },
 
         // Move selected nodes to foreground
@@ -57,5 +80,6 @@ function canParent(node: Part | null, target: Node) {
     if (!(node instanceof Node)) return false;
     if (node === target) return false;
     if (target.isInTreeOf(node)) return false;
+    if (node.findTreeParentNode() === target) return false;
     return true;
 }
