@@ -1,19 +1,43 @@
 import { Model } from "gojs";
 
 
-export default function SaveChart(model: Model, filename: string) {
+export default function SaveJson(model: Model, filename: string) {
 
-    if( filename == "") filename = "OrgChart.json";
+    if( filename == "") filename = "OrgChart";
 
-    // Create link with json data
+    // Create URL
+    var jsonUrl = "data:text/json;charset=utf-8," + encodeURIComponent(model.toJson());
+
+    createDownload(jsonUrl, filename + ".json")
+
+}
+
+function createDownload(url: string, filename: string) {
+
+    // Create download link
     var link = document.createElement("a");
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(model.toJson());
-    link.setAttribute("href", dataStr )
-    link.setAttribute('download', filename);
-    link.style.display = 'none';
+    link.href     = url;
+    link.download = filename;
 
-    // Click and remove the link
-    document.body.appendChild(link);
+    // Download SVG
     link.click();
-    document.body.removeChild(link);
+}
+
+export function SaveSVG(svg: SVGElement | null, filename: string) {
+
+    if (!svg) return;
+
+    if( filename == "") filename = "OrgChart";
+
+    var svgBlob = new Blob([svg.outerHTML], {type:"image/svg+xml;charset=utf-8"});
+
+    // Create URL
+    var svgUrl = URL.createObjectURL(
+        new Blob(
+            [svg.outerHTML],
+            {type:"image/svg+xml;charset=utf-8"}
+        )
+    );
+
+    createDownload(svgUrl, filename + ".svg")
 }
