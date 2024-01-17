@@ -6,22 +6,27 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
-    <title>Org Chart Tool - greg-bt</title>
+    <title>Org Chart Editor</title>
 </head>
 
 <!-- Body -->
 
 <body>
 
-
-    <button id="saveButton">Save</button>
-
     <div id="cover"><h3>Upload Orgchart to Begin</h3></div>
 
+    <button id="saveButton">Save</button>
+    <input type="file" id="fileInput" accept="application/JSON" />
+
+    
+
     <div id="diagramContainer"></div>
+
+    <pre id="watermark">Created by <a href="https://github.com/greg-bt/">greg-bt</a>.</pre>
 
     <script src="script.js"></script>
     
 </body>
 
 </html>
+
