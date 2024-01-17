@@ -1,12 +1,13 @@
 import { Binding, GraphObject, Node, Panel, Part, Shape, Spot } from "gojs";
 import CardPanel from "../panels/card.panel";
 import ButtonPanel from "../panels/button.panel";
+import OpenComments from "../functions/comments.function";
 
 /**
  * Defines the layout and function of orgchart node elements
 */
 export default function NodeTemplate() {
-    return GraphObject.make(
+    let node = GraphObject.make(
         
         Node, "Spot",
 
@@ -14,6 +15,9 @@ export default function NodeTemplate() {
             // Hover Event
             mouseEnter: (e, node) => setNodeOpacity(node, 1),
             mouseLeave: (e, node) => setNodeOpacity(node, 0),
+
+            // Click Event
+            click: (e, node) => OpenComments(node.part),
 
             // DragEnter Event
             mouseDragEnter: (e, node, prev) => {
@@ -62,7 +66,9 @@ export default function NodeTemplate() {
 
         // Buttons
         ButtonPanel()
-    )
+    );
+
+    return node
 }
 
 // Change panel opacity
