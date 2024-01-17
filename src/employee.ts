@@ -5,10 +5,13 @@ export default class Employee {
 
     email:      string;
     name:       string;
+
     title:      string;   
     tag:        string;
     location:   string;
+
     comments:   string;
+    bgcolor:    string;
 
     parent?:    number | string;    // Key of parent node
 
@@ -16,7 +19,7 @@ export default class Employee {
     constructor() {
 
         // Prompt user for employee email
-        let email = prompt("Enter Email Address", "");
+        let email = prompt("Enter New Employee Email Address", "");
         email = (!email ? "" : email);
 
         this.email = email;
@@ -32,6 +35,7 @@ export default class Employee {
         this.location = "Location";
 
         this.comments = ""
+        this.bgcolor = "#ffffff"
 
     }
 }
