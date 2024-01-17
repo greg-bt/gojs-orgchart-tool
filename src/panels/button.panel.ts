@@ -1,4 +1,4 @@
-import { Binding, GraphObject, Panel, Part, Shape, Spot } from "gojs";
+import { Binding, Diagram, GraphObject, Panel, Part, Shape, Spot } from "gojs";
 import Employee from "../employee";
 
 /** Returns panel containing tree expand and node add buttons */
@@ -35,7 +35,7 @@ const expandButton = GraphObject.make(
 const addButton = GraphObject.make(
     "Button",
     {
-        click: (e, button) => addEmployee(button.part)
+        click: (e, button) => addEmployee(button.diagram, button.part)
     },
 
     // Shape of add button
@@ -49,22 +49,25 @@ const addButton = GraphObject.make(
 )
 
 // Add new employee to diagram
-export function addEmployee(node : Part | null) {
+export function addEmployee(diagram: Diagram | null, node?: Part | null) {
 
     // Ensure node and diagram exist
-    if (!node || !node.diagram) return;
-    node.diagram.startTransaction("add employee");
+    if (!diagram) return null;
+    diagram.startTransaction("add employee");
 
     // Create new node
     let employeeData = new Employee();
-    employeeData.parent = node.data.key;
+    if (node) employeeData.parent = node.data.key;
 
     // Add node to diagram
-    node.diagram.model.addNodeData(employeeData);
-    const newNode = node.diagram.findNodeForData(employeeData);
+    diagram.model.addNodeData(employeeData);
+    const newNode = diagram.findNodeForData(employeeData);
 
     // Check for completeness and close transaction
-    if (newNode) newNode.location = node.location;
-    node.diagram.commitTransaction("add employee");
-    node.diagram.commandHandler.scrollToPart( (newNode as Part ) );
+    if (newNode && node) newNode.location = node.location;
+    diagram.commitTransaction("add employee");
+    diagram.select(newNode);
+    diagram.commandHandler.scrollToPart( (newNode as Part ) );
+
+    return newNode;
 }
