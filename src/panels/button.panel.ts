@@ -1,4 +1,5 @@
 import { Binding, GraphObject, Panel, Part, Shape, Spot } from "gojs";
+import Employee from "../employee";
 
 /** Returns panel containing tree expand and node add buttons */
 export default function ButtonPanel() {
@@ -54,22 +55,13 @@ export function addEmployee(node : Part | null) {
     if (!node || !node.diagram) return;
     node.diagram.startTransaction("add employee");
 
-    // Prompt for email
-    let email = prompt("Enter Email Address", "");
-
     // Create new node
-    let newNodeData = {
-        email: email,
-        name: "NAME",
-        title: "TITLE",
-        tag: "TAG",
-        location: "LOCATION",
-        parent: node.data.key
-    };
+    let employeeData = new Employee();
+    employeeData.parent = node.data.key;
 
     // Add node to diagram
-    node.diagram.model.addNodeData(newNodeData);
-    const newNode = node.diagram.findNodeForData(newNodeData);
+    node.diagram.model.addNodeData(employeeData);
+    const newNode = node.diagram.findNodeForData(employeeData);
 
     // Check for completeness and close transaction
     if (newNode) newNode.location = node.location;
