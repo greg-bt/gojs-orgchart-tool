@@ -1,7 +1,7 @@
 import { Binding, GraphObject, Node, Panel, Part, Shape, Spot } from "gojs";
 import CardPanel from "../panels/card.panel";
 import ButtonPanel from "../panels/button.panel";
-import OpenComments from "../functions/comments.function";
+import SelectProps from "../functions/properties.function";
 
 /**
  * Defines the layout and function of orgchart node elements
@@ -17,7 +17,7 @@ export default function NodeTemplate() {
             mouseLeave: (e, node) => setNodeOpacity(node, 0),
 
             // Click Event
-            click: (e, node) => OpenComments(node.part),
+            click: (e, node) => SelectProps(node.part),
 
             // DragEnter Event
             mouseDragEnter: (e, node, prev) => {
