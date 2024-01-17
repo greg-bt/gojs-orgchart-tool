@@ -10,5 +10,7 @@ export default function LoadModel(event: Event, model: Model): string {
         UpdateModel(Model.fromJson(text));
     });
     
-    return files[0].name;
+    const filename = files[0].name;
+
+    return filename.substr(0, filename.lastIndexOf("."));
 }
