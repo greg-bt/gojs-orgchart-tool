@@ -1,5 +1,7 @@
 import { Binding, GraphObject, Panel, Size, Spot, TextBlock } from 'gojs';
 
+const width = 150;
+
 /** Returns panel showing the details of an employee */
 export default function DetailsPanel() {
     return GraphObject.make(
@@ -7,7 +9,7 @@ export default function DetailsPanel() {
         Panel, "Vertical",
 
         {
-            width: 150,
+            width: width,
             height: 70,
             margin: 3,
             defaultAlignment: Spot.Left, // Align text left
@@ -22,18 +24,22 @@ export default function DetailsPanel() {
 }
 
 // Create editable text blocks
-function textBlock(id : String, style: Style) {
+function textBlock(id : string, style: Style, value?: string | null) : TextBlock {
     return GraphObject.make(
 
         TextBlock,
         style,
         id,
 
+        (!value ? id.toUpperCase() : value),
+
+
         {
             name: id.toUpperCase(),
             editable: true,             // Text can be edited
             isMultiline: false,         // Single line
-            maxSize: new Size(150, 20), // Hide overflow
+            width: width,
+            maxSize: new Size(NaN, 20), // Hide overflow
             margin: 0.5,
         },
 
