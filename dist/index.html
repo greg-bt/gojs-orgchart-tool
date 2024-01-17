@@ -13,15 +13,23 @@
 
 <body>
 
-    <button id="saveButton">Save</button>
+    <button id="json">Save</button>
     <input type="file" id="fileInput" accept="application/JSON" />
-    <textarea disabled autocomplete="off" id="textArea" placeholder="Comments"></textarea>
+
+    <div id="propContainer">
+        <textarea disabled autocomplete="off" id="textArea" placeholder="Comments"></textarea><br>
+        <input disabled autocomplete="off" id="colorSelect" value="#ffffff" type="color" />
+    </div>
+    
+
+
+    <button id="svg">Print</button>
 
     
 
     <div id="diagramContainer"></div>
 
-    <script src="script.js"></script>
+    <script src="min-script.js"></script>
     
 </body>
 
