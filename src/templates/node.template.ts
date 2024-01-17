@@ -21,13 +21,13 @@ export default function NodeTemplate() {
 
                 if (!canParent(node.diagram.selection.first(), (node as Node) )) return;
                 let shape = (node as Panel).findObject("SHAPE");
-                if (shape) (shape as Shape).fill = "#e1fff6";
+                (shape as Shape).fill = "#e1fff6";
             },
 
             // DragLeave Event
             mouseDragLeave: (e, node, next) => {
                 let shape = (node as Panel).findObject("SHAPE");
-                if (shape) (shape as Shape).fill = "white";
+                (shape as Shape).fill = "white";
             },
 
             // Drop Event
