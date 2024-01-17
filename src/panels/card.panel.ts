@@ -1,4 +1,4 @@
-import { GraphObject, Panel, Shape } from 'gojs';
+import { Binding, GraphObject, Panel, Shape } from 'gojs';
 import PicturePanel from './picture.panel';
 import DetailsPanel from './details.panel';
 
@@ -14,10 +14,11 @@ export default function CardPanel() {
             "RoundedRectangle",
             {
                 name: "SHAPE",
-                fill: "white",
+                fill: "#ffffff",
                 stroke: "#d0d3d4",
                 strokeWidth: .5
-            }
+            },
+            new Binding("fill", "bgcolor" )
         ),
 
         // Card contents
