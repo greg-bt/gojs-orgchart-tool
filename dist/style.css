@@ -3,60 +3,41 @@
 * {
     margin: 0;
     font-family: system-ui,-apple-system,"Segoe UI",Roboto;
+    position: fixed;
+    z-index: 10
 }
 
-#saveButton:hover { background-color: #d5fcf0; }
-#saveButton:active { transform: translateY(4px); background-color: #c1ffec; }
-#saveButton {
-    position: absolute;
 
+#saveButton:active { transform: translateY(4px); background-color: #c1ffec }
+#saveButton {
     top: 3em;
     right: 3em;
 
     background-color: #e1fff6;
-
-    z-index: 10;
-    border: 2px solid #bfe0d6;
     border-radius: 10px;
     cursor: pointer;
 
-    font-weight: bolder;
+    font-weight: bold;
 
     padding: 0.4em 1em;
-    transition: all 200ms cubic-bezier(.23, 1, 0.32, 1);
-}
-
-#cover {
-
-    display: none;
-
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-
-    z-index: 11;
-    background-color: rgba(0, 0, 0, 0.103);
-    backdrop-filter: blur(3px);
+    transition: all 200ms;
 }
 
 #diagramContainer {
     width:100vw;
     height:100vh;
     background-color: #f5f6f7;
-}
-
-#watermark {
-    position: absolute;
-    bottom: 1em;
-    right: 1em;
-    z-index: 12;
-    font-size: smaller;
-    pointer-events: none;
-    opacity: .3;
+    z-index: 1;
 }
 
 #fileInput {
-    position: absolute;
-    z-index: 12;
-    bottom: 0;
+    bottom: 1em;
+    left: 1em;
+}
+
+#textArea {
+    font-size: small;
+    left: 1em;
+    top: 6em;
+    background-color: #FFF5;
 }
